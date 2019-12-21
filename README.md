@@ -1,0 +1,3 @@
+# Rijksmuseum Collection &middot; <img src="https://img.shields.io/badge/iOS-12.0+-blue.svg" /> <img src="https://img.shields.io/badge/Swift-5.0-brightgreen.svg" /> <a href="https://twitter.com/filipedonadio"><img src="https://img.shields.io/badge/Contact-@filipedonadio-lightgrey.svg?style=flat" alt="Twitter: @filipedonadio" /></a>
+
+As an art and history lover, I decided to make this iOS app about the Rijksmuseum in Amsterdam, the Dutch National Museum. The idea of the app is to show the collection of the Rijks museum provided by their open [API](https://www.rijksmuseum.nl/en/data).
