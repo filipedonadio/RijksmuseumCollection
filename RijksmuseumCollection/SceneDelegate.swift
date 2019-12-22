@@ -21,11 +21,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-
-            let layout = UICollectionViewFlowLayout()
-            window.rootViewController = UINavigationController(rootViewController: HomeViewController(collectionViewLayout: layout))
-            self.window = window
             window.makeKeyAndVisible()
+            self.window = window
+
+            let layout = PinterestLayout()
+            window.rootViewController = UINavigationController(rootViewController: HomeViewController(collectionViewLayout: layout))
         }
     }
 

@@ -15,6 +15,7 @@
 		813FEED723AD45EF00C15501 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813FEED623AD45EF00C15501 /* HomeViewController.swift */; };
 		814185E823AE79C5001E6F09 /* ImagePreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814185E623AE79C5001E6F09 /* ImagePreviewCell.swift */; };
 		814185E923AE79C5001E6F09 /* ImagePreviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 814185E723AE79C5001E6F09 /* ImagePreviewCell.xib */; };
+		81551D8623AF483F008EC04B /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81551D8523AF483F008EC04B /* PinterestLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		813FEED623AD45EF00C15501 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		814185E623AE79C5001E6F09 /* ImagePreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewCell.swift; sourceTree = "<group>"; };
 		814185E723AE79C5001E6F09 /* ImagePreviewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagePreviewCell.xib; sourceTree = "<group>"; };
+		81551D8523AF483F008EC04B /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				813FEED623AD45EF00C15501 /* HomeViewController.swift */,
 				814185E623AE79C5001E6F09 /* ImagePreviewCell.swift */,
 				814185E723AE79C5001E6F09 /* ImagePreviewCell.xib */,
+				81551D8523AF483F008EC04B /* PinterestLayout.swift */,
 				813FEEC823AD43BA00C15501 /* Assets.xcassets */,
 				813FEECD23AD43BA00C15501 /* LaunchScreen.storyboard */,
 				813FEED023AD43BA00C15501 /* Info.plist */,
@@ -153,6 +156,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81551D8623AF483F008EC04B /* PinterestLayout.swift in Sources */,
 				813FEEC323AD43B900C15501 /* AppDelegate.swift in Sources */,
 				813FEEC523AD43B900C15501 /* SceneDelegate.swift in Sources */,
 				814185E823AE79C5001E6F09 /* ImagePreviewCell.swift in Sources */,

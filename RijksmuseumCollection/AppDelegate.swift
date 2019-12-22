@@ -20,10 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             // iOS 12 specific window setup
             window = UIWindow(frame: UIScreen.main.bounds)
-
-            let layout = UICollectionViewFlowLayout()
-            window?.rootViewController = UINavigationController(rootViewController: HomeViewController(collectionViewLayout: layout))
             window?.makeKeyAndVisible()
+
+            let layout = PinterestLayout()
+            window?.rootViewController = UINavigationController(rootViewController: HomeViewController(collectionViewLayout: layout))
         }
 
         return true
