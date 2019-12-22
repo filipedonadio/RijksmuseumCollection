@@ -20,7 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             // iOS 12 specific window setup
             window = UIWindow(frame: UIScreen.main.bounds)
-            window?.rootViewController = HomeViewController()
+
+            let layout = UICollectionViewFlowLayout()
+            window?.rootViewController = UINavigationController(rootViewController: HomeViewController(collectionViewLayout: layout))
             window?.makeKeyAndVisible()
         }
 
