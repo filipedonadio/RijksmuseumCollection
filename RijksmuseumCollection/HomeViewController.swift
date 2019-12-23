@@ -10,7 +10,7 @@ import UIKit
 
 class HomeViewController: UICollectionViewController {
 
-    let images = [UIImage(named: "01"), UIImage(named: "02"), UIImage(named: "03"), UIImage(named: "04"), UIImage(named: "05"), UIImage(named: "06"), UIImage(named: "07"), UIImage(named: "08"), UIImage(named: "09"), UIImage(named: "10"), UIImage(named: "11"), UIImage(named: "12"), UIImage(named: "13"), UIImage(named: "14")]
+    let images = [UIImage?]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,8 +20,15 @@ class HomeViewController: UICollectionViewController {
     }
 
     func setupNavigationBar() {
-        title = "Rijksmuseum Collection"
-        navigationController?.navigationBar.barTintColor = .lightGray
+        let logoFrame = CGRect(x: 0, y: 0, width: 155, height: 20)
+        let logoContainer = UIView(frame: logoFrame)
+        let imageView = UIImageView(frame: logoFrame)
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: "logo")
+        logoContainer.addSubview(imageView)
+        navigationItem.titleView = logoContainer
+        navigationController?.navigationBar.barTintColor = .black
+        navigationController?.navigationBar.barStyle = .black
     }
 
     func setupCollectionView() {
@@ -29,7 +36,7 @@ class HomeViewController: UICollectionViewController {
             layout.delegate = self
         }
         collectionView.register(ImagePreviewCell.nib, forCellWithReuseIdentifier: ImagePreviewCell.identifier)
-        collectionView.backgroundColor = .lightGray
+        collectionView.backgroundColor = .black
         collectionView?.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
 }
@@ -37,7 +44,7 @@ class HomeViewController: UICollectionViewController {
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 14
+        return images.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
