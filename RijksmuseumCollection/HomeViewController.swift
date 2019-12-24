@@ -11,11 +11,14 @@ import UIKit
 class HomeViewController: UICollectionViewController {
 
     let images = [UIImage?]()
+    let menuBar = MenuBar()
+    let menuBarHeight: CGFloat = 50
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupNavigationBar()
+        setupMenu()
         setupCollectionView()
     }
 
@@ -31,13 +34,29 @@ class HomeViewController: UICollectionViewController {
         navigationController?.navigationBar.barStyle = .black
     }
 
+    func setupMenu() {
+        view.addSubview(menuBar)
+        menuBar.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            menuBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            menuBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            menuBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            menuBar.heightAnchor.constraint(equalToConstant: menuBarHeight),
+        ])
+    }
+
     func setupCollectionView() {
         if let layout = collectionView.collectionViewLayout as? PinterestLayout {
             layout.delegate = self
         }
-        collectionView.register(ImagePreviewCell.nib, forCellWithReuseIdentifier: ImagePreviewCell.identifier)
+
+        let topSpacing: CGFloat = 6
+        let topInset = menuBarHeight + topSpacing
+        collectionView?.contentInset = UIEdgeInsets(top: topInset, left: 10, bottom: 10, right: 10)
+        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
         collectionView.backgroundColor = .black
-        collectionView?.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        collectionView.indicatorStyle = .white
+        collectionView.register(ImagePreviewCell.nib, forCellWithReuseIdentifier: ImagePreviewCell.identifier)
     }
 }
 
