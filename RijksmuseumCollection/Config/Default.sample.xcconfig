@@ -1,0 +1,13 @@
+//
+//  Default.sample.xcconfig
+//  RijksmuseumCollection
+//
+//  Created by Filipe Donadio on 25/12/19.
+//  Copyright © 2019 Filipe Donadio. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+BASE_URL = https:/$()/www.rijksmuseum.nl/api/en
+API_KEY = <API_KEY>

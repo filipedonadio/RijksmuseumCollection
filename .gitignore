@@ -90,5 +90,7 @@ fastlane/test_output
 iOSInjectionProject/
 
 # MacOSX
-
 .DS_Store
+
+# Custom
+Default.xcconfig

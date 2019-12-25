@@ -18,6 +18,7 @@
 		81551D8623AF483F008EC04B /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81551D8523AF483F008EC04B /* PinterestLayout.swift */; };
 		8185E6DF23B0D9B6000AAB3B /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8185E6DE23B0D9B6000AAB3B /* MenuBar.swift */; };
 		8185E6E323B0E5B9000AAB3B /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8185E6E223B0E5B9000AAB3B /* MenuCell.swift */; };
+		81ECC9B123B3E245005A99D0 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ECC9B023B3E245005A99D0 /* Environment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,9 @@
 		81551D8523AF483F008EC04B /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
 		8185E6DE23B0D9B6000AAB3B /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		8185E6E223B0E5B9000AAB3B /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		81ECC9AF23B3E211005A99D0 /* Default.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Default.xcconfig; path = ../Default.xcconfig; sourceTree = "<group>"; };
+		81ECC9B023B3E245005A99D0 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		81ECC9B223B3E2CA005A99D0 /* Default.sample.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Default.sample.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,7 @@
 				813FEEC823AD43BA00C15501 /* Assets.xcassets */,
 				813FEECD23AD43BA00C15501 /* LaunchScreen.storyboard */,
 				813FEED023AD43BA00C15501 /* Info.plist */,
+				81ECC9B323B3E3E1005A99D0 /* Config */,
 				813FEECA23AD43BA00C15501 /* Preview Content */,
 			);
 			path = RijksmuseumCollection;
@@ -96,6 +101,16 @@
 				8185E6E223B0E5B9000AAB3B /* MenuCell.swift */,
 			);
 			path = Menu;
+			sourceTree = "<group>";
+		};
+		81ECC9B323B3E3E1005A99D0 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				81ECC9B023B3E245005A99D0 /* Environment.swift */,
+				81ECC9B223B3E2CA005A99D0 /* Default.sample.xcconfig */,
+				81ECC9AF23B3E211005A99D0 /* Default.xcconfig */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,6 +186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81551D8623AF483F008EC04B /* PinterestLayout.swift in Sources */,
+				81ECC9B123B3E245005A99D0 /* Environment.swift in Sources */,
 				813FEEC323AD43B900C15501 /* AppDelegate.swift in Sources */,
 				8185E6DF23B0D9B6000AAB3B /* MenuBar.swift in Sources */,
 				813FEEC523AD43B900C15501 /* SceneDelegate.swift in Sources */,
@@ -196,6 +212,7 @@
 /* Begin XCBuildConfiguration section */
 		813FEED123AD43BA00C15501 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81ECC9AF23B3E211005A99D0 /* Default.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -256,6 +273,7 @@
 		};
 		813FEED223AD43BA00C15501 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81ECC9AF23B3E211005A99D0 /* Default.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -310,6 +328,7 @@
 		};
 		813FEED423AD43BA00C15501 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81ECC9AF23B3E211005A99D0 /* Default.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -331,6 +350,7 @@
 		};
 		813FEED523AD43BA00C15501 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81ECC9AF23B3E211005A99D0 /* Default.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
