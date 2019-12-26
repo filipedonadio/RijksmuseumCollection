@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.makeKeyAndVisible()
 
             let layout = PinterestLayout()
-            window?.rootViewController = UINavigationController(rootViewController: HomeViewController(collectionViewLayout: layout))
+            window?.rootViewController = UINavigationController(rootViewController: CollectionViewController(collectionViewLayout: layout))
         }
 
         return true

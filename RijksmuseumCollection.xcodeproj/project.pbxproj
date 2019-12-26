@@ -14,7 +14,7 @@
 		813FEEC923AD43BA00C15501 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 813FEEC823AD43BA00C15501 /* Assets.xcassets */; };
 		813FEECC23AD43BA00C15501 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 813FEECB23AD43BA00C15501 /* Preview Assets.xcassets */; };
 		813FEECF23AD43BA00C15501 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 813FEECD23AD43BA00C15501 /* LaunchScreen.storyboard */; };
-		813FEED723AD45EF00C15501 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813FEED623AD45EF00C15501 /* HomeViewController.swift */; };
+		813FEED723AD45EF00C15501 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813FEED623AD45EF00C15501 /* CollectionViewController.swift */; };
 		814185E823AE79C5001E6F09 /* ImagePreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814185E623AE79C5001E6F09 /* ImagePreviewCell.swift */; };
 		814185E923AE79C5001E6F09 /* ImagePreviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 814185E723AE79C5001E6F09 /* ImagePreviewCell.xib */; };
 		81551D8623AF483F008EC04B /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81551D8523AF483F008EC04B /* PinterestLayout.swift */; };
@@ -43,7 +43,7 @@
 		813FEECB23AD43BA00C15501 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		813FEECE23AD43BA00C15501 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		813FEED023AD43BA00C15501 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		813FEED623AD45EF00C15501 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		813FEED623AD45EF00C15501 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		814185E623AE79C5001E6F09 /* ImagePreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewCell.swift; sourceTree = "<group>"; };
 		814185E723AE79C5001E6F09 /* ImagePreviewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagePreviewCell.xib; sourceTree = "<group>"; };
 		81551D8523AF483F008EC04B /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
@@ -86,6 +86,45 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		813DD45723B552FE00D097A0 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				813DD45823B5532A00D097A0 /* Collection */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		813DD45823B5532A00D097A0 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				81774EA823B517C600B1C212 /* Service */,
+				813FEED623AD45EF00C15501 /* CollectionViewController.swift */,
+				81551D8523AF483F008EC04B /* PinterestLayout.swift */,
+				814185E623AE79C5001E6F09 /* ImagePreviewCell.swift */,
+				814185E723AE79C5001E6F09 /* ImagePreviewCell.xib */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		813DD45A23B557E500D097A0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				813FEECD23AD43BA00C15501 /* LaunchScreen.storyboard */,
+				813FEEC823AD43BA00C15501 /* Assets.xcassets */,
+				813FEED023AD43BA00C15501 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		813DD45C23B5584000D097A0 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				8185E6DE23B0D9B6000AAB3B /* MenuBar.swift */,
+				8185E6E223B0E5B9000AAB3B /* MenuCell.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
 		813FEEB623AD43B900C15501 = {
 			isa = PBXGroup;
 			children = (
@@ -109,15 +148,9 @@
 				813FEEC423AD43B900C15501 /* SceneDelegate.swift */,
 				81774EB123B52E6800B1C212 /* Model */,
 				8128D23823B4FA53008FCD27 /* Networking */,
-				8185E6E423B0E5D2000AAB3B /* Menu */,
-				81774EA823B517C600B1C212 /* Service */,
-				813FEED623AD45EF00C15501 /* HomeViewController.swift */,
-				814185E623AE79C5001E6F09 /* ImagePreviewCell.swift */,
-				814185E723AE79C5001E6F09 /* ImagePreviewCell.xib */,
-				81551D8523AF483F008EC04B /* PinterestLayout.swift */,
-				813FEEC823AD43BA00C15501 /* Assets.xcassets */,
-				813FEECD23AD43BA00C15501 /* LaunchScreen.storyboard */,
-				813FEED023AD43BA00C15501 /* Info.plist */,
+				813DD45C23B5584000D097A0 /* Custom Views */,
+				813DD45723B552FE00D097A0 /* Screens */,
+				813DD45A23B557E500D097A0 /* Supporting Files */,
 				81ECC9B323B3E3E1005A99D0 /* Config */,
 				813FEECA23AD43BA00C15501 /* Preview Content */,
 			);
@@ -152,15 +185,6 @@
 				81774EA923B5191200B1C212 /* CollectionObjectType.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		8185E6E423B0E5D2000AAB3B /* Menu */ = {
-			isa = PBXGroup;
-			children = (
-				8185E6DE23B0D9B6000AAB3B /* MenuBar.swift */,
-				8185E6E223B0E5B9000AAB3B /* MenuCell.swift */,
-			);
-			path = Menu;
 			sourceTree = "<group>";
 		};
 		81ECC9B323B3E3E1005A99D0 /* Config */ = {
@@ -263,7 +287,7 @@
 				8185E6E323B0E5B9000AAB3B /* MenuCell.swift in Sources */,
 				81774E9A23B50E6400B1C212 /* NetworkRequest.swift in Sources */,
 				81774E9C23B5139600B1C212 /* NetworkError.swift in Sources */,
-				813FEED723AD45EF00C15501 /* HomeViewController.swift in Sources */,
+				813FEED723AD45EF00C15501 /* CollectionViewController.swift in Sources */,
 				811FCA7523B536E900CC4335 /* DefaultRequestManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,7 +431,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"RijksmuseumCollection/Preview Content\"";
 				DEVELOPMENT_TEAM = C49U28DLR9;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = RijksmuseumCollection/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/RijksmuseumCollection/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -429,7 +453,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"RijksmuseumCollection/Preview Content\"";
 				DEVELOPMENT_TEAM = C49U28DLR9;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = RijksmuseumCollection/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/RijksmuseumCollection/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  CollectionViewController.swift
 //  RijksmuseumCollection
 //
 //  Created by Filipe Donadio on 20/12/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UICollectionViewController {
+class CollectionViewController: UICollectionViewController {
 
     let images = [UIImage?]()
     let menuBar = MenuBar()
@@ -60,7 +60,7 @@ class HomeViewController: UICollectionViewController {
     }
 }
 
-extension HomeViewController: UICollectionViewDelegateFlowLayout {
+extension CollectionViewController: UICollectionViewDelegateFlowLayout {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count
@@ -81,7 +81,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension HomeViewController: PinterestLayoutDelegate {
+extension CollectionViewController: PinterestLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
         return images[indexPath.item]?.size.height ?? 150

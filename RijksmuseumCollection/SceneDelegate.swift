@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window = window
 
             let layout = PinterestLayout()
-            window.rootViewController = UINavigationController(rootViewController: HomeViewController(collectionViewLayout: layout))
+            window.rootViewController = UINavigationController(rootViewController: CollectionViewController(collectionViewLayout: layout))
         }
     }
 
