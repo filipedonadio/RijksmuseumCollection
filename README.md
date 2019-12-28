@@ -2,6 +2,8 @@
 
 As an art and history lover, I decided to make this iOS app about the Rijksmuseum in Amsterdam, the Dutch National Museum. The idea of the app is to show the collection of the Rijks museum provided by their open [API](https://www.rijksmuseum.nl/en/data).
 
+<img src="screenshot.png" alt="Rijksmuseum Collection app screenshot" width="250">
+
 # Configuration
 
 To run this project you first need to obtain an API key by registering for a [Rijksstudio account](https://www.rijksmuseum.nl/en/rijksstudio).
