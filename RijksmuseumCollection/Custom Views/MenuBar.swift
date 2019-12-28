@@ -21,11 +21,14 @@ class MenuBar: UIView {
         return cv
     }()
 
+    // The view controller managed by this menu
+    var targetViewController: CollectionViewController?
+
     let menuCellId = "menuCellId"
-    let menuItems = ["ON VIEW", "FINE ART", "PAINTINGS", "JEWELRY", "COINS", "BANKNOTES", "PHOTOGRAPH", "DRAWING", "BOOKS", "PLATES"]
     let menuItemLeftSpacing: CGFloat = 10
     let menuItemRightSpacing: CGFloat = 10
     let menuFont = UIFont(name: "AvenirNext-Medium", size: 14)
+    let menuItems: [CollectionObjectType] = [.painting, .box, .brooch, .candlestick, .cup, .demonstrationModel, .figure, .fragment, .furniture, .jeton, .jewellery]
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -66,16 +69,25 @@ extension MenuBar: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: menuCellId, for: indexPath) as! MenuCell
-        cell.label.text = menuItems[indexPath.row]
+        cell.label.text = menuItems[indexPath.row].rawValue.capitalized
         return cell
+    }
+}
+
+extension MenuBar: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedType = menuItems[indexPath.item]
+        targetViewController?.loadCollection(with: selectedType)
     }
 }
 
 extension MenuBar: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
         // Calculate the item text size for each item
-        let menuItemTextSize = menuItems[indexPath.row].size(withAttributes: [
+        let menuItemTextSize = menuItems[indexPath.row].rawValue.size(withAttributes: [
             NSAttributedString.Key.font : menuFont!
         ])
         let menuItemWidth = menuItemLeftSpacing + menuItemTextSize.width + menuItemRightSpacing

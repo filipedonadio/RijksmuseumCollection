@@ -26,6 +26,8 @@ final class CollectionViewModel {
     }
 
     private func downloadImages(from collection: Collection) {
+        items.removeAll()
+        
         for object in collection.artObjects {
             downloadGroup.enter()
 

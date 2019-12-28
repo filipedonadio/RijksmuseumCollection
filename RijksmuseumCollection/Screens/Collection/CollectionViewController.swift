@@ -24,9 +24,12 @@ class CollectionViewController: UICollectionViewController {
     var items = [ItemPreview]() {
         didSet {
             if let layout = collectionView.collectionViewLayout as? PinterestLayout {
-                layout.reloadData()
+                layout.reset()
             }
             collectionView.reloadData()
+            
+            let indexPath = IndexPath(item: 0, section: 0)
+            collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
         }
     }
 
@@ -36,6 +39,11 @@ class CollectionViewController: UICollectionViewController {
         setupNavigationBar()
         setupMenu()
         setupCollectionView()
+        loadCollection(with: .painting)
+    }
+
+    func loadCollection(with type: CollectionObjectType) {
+        viewModel?.fetchCollection(type: type)
     }
 
     func setupNavigationBar() {
@@ -51,6 +59,8 @@ class CollectionViewController: UICollectionViewController {
     }
 
     func setupMenu() {
+        menuBar.targetViewController = self
+
         view.addSubview(menuBar)
         menuBar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

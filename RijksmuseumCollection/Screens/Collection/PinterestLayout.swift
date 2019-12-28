@@ -91,7 +91,8 @@ class PinterestLayout: UICollectionViewLayout {
         return cache[indexPath.item]
     }
 
-    func reloadData() {
+    func reset() {
         self.cache = [UICollectionViewLayoutAttributes]()
+        contentHeight = 0
     }
 }
