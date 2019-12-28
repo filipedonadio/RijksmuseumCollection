@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CollectionViewController: UICollectionViewController {
+class CollectionViewController: UICollectionViewController, AlertDisplayer {
 
     let menuBar = MenuBar()
     let menuBarHeight: CGFloat = 50
@@ -121,6 +121,9 @@ extension CollectionViewController: CollectionViewModelDelegate {
     }
 
     func onFetchFailed(with reason: String) {
-        // TODO: Show error message
+        let title = "Warning"
+        let action = UIAlertAction(title: "OK", style: .default)
+        
+        displayAlert(with: title, message: reason, actions: [action])
     }
 }

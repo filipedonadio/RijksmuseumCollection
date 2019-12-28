@@ -53,7 +53,9 @@ final class CollectionViewModel {
             switch response {
 
             case .failure(let error):
-                self?.delegate?.onFetchFailed(with: error.reason)
+                DispatchQueue.main.async { [weak self] in
+                    self?.delegate?.onFetchFailed(with: error.reason)
+                }
 
             case .success(let collection):
                 self?.downloadImages(from: collection)
