@@ -10,7 +10,7 @@ import Foundation
 
 struct DefaultRequestManager: RequestManager {
 
-    func execute<T: Decodable>(request: NetworkRequest, completion: @escaping (Result<T, Error>) -> Void) {
+    func execute<T: Decodable>(request: NetworkRequest, completion: @escaping (Result<T, NetworkError>) -> Void) {
         
         let endpointUrl = Environment.baseURL.appendingPathComponent(request.path)
 
@@ -35,8 +35,8 @@ struct DefaultRequestManager: RequestManager {
         }
 
         let dataTask = URLSession.shared.dataTask(with: url) { data, _, error in
-            if let error = error {
-                completion(.failure(error))
+            if error != nil {
+                completion(.failure(NetworkError.network))
                 return
             }
 

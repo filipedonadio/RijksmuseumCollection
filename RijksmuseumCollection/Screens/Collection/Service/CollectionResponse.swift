@@ -8,4 +8,4 @@
 
 import Foundation
 
-typealias CollectionResponse = Result<Collection, Error>
+typealias CollectionResponse = Result<Collection, NetworkError>

@@ -10,9 +10,25 @@ import UIKit
 
 class CollectionViewController: UICollectionViewController {
 
-    let images = [UIImage?]()
     let menuBar = MenuBar()
     let menuBarHeight: CGFloat = 50
+    let defaultCellHeight: CGFloat = 150
+    let cellTextHeight: CGFloat = 65
+
+    var viewModel: CollectionViewModel? {
+        didSet {
+            viewModel?.delegate = self
+        }
+    }
+
+    var items = [ItemPreview]() {
+        didSet {
+            if let layout = collectionView.collectionViewLayout as? PinterestLayout {
+                layout.reloadData()
+            }
+            collectionView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,22 +72,19 @@ class CollectionViewController: UICollectionViewController {
         collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
         collectionView.backgroundColor = .black
         collectionView.indicatorStyle = .white
-        collectionView.register(ImagePreviewCell.nib, forCellWithReuseIdentifier: ImagePreviewCell.identifier)
+        collectionView.register(ItemPreviewCell.nib, forCellWithReuseIdentifier: ItemPreviewCell.identifier)
     }
 }
 
 extension CollectionViewController: UICollectionViewDelegateFlowLayout {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return items.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImagePreviewCell.identifier, for: indexPath) as! ImagePreviewCell
-        cell.imageView.image = images[indexPath.row]
-        cell.title.text = "Title"
-        cell.subtitle.text = "Subtitle"
-
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemPreviewCell.identifier, for: indexPath) as! ItemPreviewCell
+        cell.item = items[indexPath.row]
         return cell
     }
 
@@ -84,6 +97,20 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
 extension CollectionViewController: PinterestLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
-        return images[indexPath.item]?.size.height ?? 150
+        guard let imageData = items[indexPath.item].image else { return defaultCellHeight }
+        guard let imageHeight = UIImage(data: imageData)?.size.height else { return defaultCellHeight }
+
+        return imageHeight + cellTextHeight
+    }
+}
+
+extension CollectionViewController: CollectionViewModelDelegate {
+
+    func onFetchCompleted(with collection: [ItemPreview]) {
+        items = collection
+    }
+
+    func onFetchFailed(with reason: String) {
+        // TODO: Show error message
     }
 }

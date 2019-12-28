@@ -9,6 +9,7 @@
 import Foundation
 
 struct WebImage: Decodable {
-    
+
+    let guid: String
     let url: String
 }

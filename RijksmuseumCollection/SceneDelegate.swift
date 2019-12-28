@@ -25,7 +25,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window = window
 
             let layout = PinterestLayout()
-            window.rootViewController = UINavigationController(rootViewController: CollectionViewController(collectionViewLayout: layout))
+            let viewModel = CollectionViewModel(collectionService: DefaultCollectionService(requestManager: DefaultRequestManager()))
+            let collectionVC = CollectionViewController(collectionViewLayout: layout)
+            collectionVC.viewModel = viewModel
+            window.rootViewController = UINavigationController(rootViewController: collectionVC)
         }
     }
 

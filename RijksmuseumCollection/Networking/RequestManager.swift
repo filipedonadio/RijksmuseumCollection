@@ -10,5 +10,5 @@ import Foundation
 
 protocol RequestManager {
 
-    func execute<T: Decodable>(request: NetworkRequest, completion: @escaping (Result<T, Error>) -> Void)
+    func execute<T: Decodable>(request: NetworkRequest, completion: @escaping (Result<T, NetworkError>) -> Void)
 }
