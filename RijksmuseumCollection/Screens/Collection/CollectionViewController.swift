@@ -14,6 +14,8 @@ class CollectionViewController: UICollectionViewController, AlertDisplayer {
     let menuBarHeight: CGFloat = 50
     let defaultCellHeight: CGFloat = 150
     let cellTextHeight: CGFloat = 65
+    let loadingViewController = LoadingViewController()
+
     var page = 1
     var loadingMore = false
 
@@ -88,6 +90,23 @@ class CollectionViewController: UICollectionViewController, AlertDisplayer {
         collectionView.indicatorStyle = .white
         collectionView.register(ItemPreviewCell.nib, forCellWithReuseIdentifier: ItemPreviewCell.identifier)
     }
+
+    func addLoadingView() {
+        add(loadingViewController)
+
+        guard let loadingView = loadingViewController.view else { return }
+        loadingView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            loadingView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: menuBarHeight),
+            loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            loadingView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+
+    func removeLoadingView() {
+        loadingViewController.remove()
+    }
 }
 
 extension CollectionViewController {
@@ -134,14 +153,20 @@ extension CollectionViewController: PinterestLayoutDelegate {
 
 extension CollectionViewController: CollectionViewModelDelegate {
 
+    func onLoading() {
+        addLoadingView()
+    }
+
     func onFetchCompleted(with collection: [ItemPreview]) {
+        removeLoadingView()
         items = collection
     }
 
     func onFetchFailed(with reason: String) {
+        removeLoadingView()
+
         let title = "Warning"
         let action = UIAlertAction(title: "OK", style: .default)
-        
         displayAlert(with: title, message: reason, actions: [action])
     }
 }

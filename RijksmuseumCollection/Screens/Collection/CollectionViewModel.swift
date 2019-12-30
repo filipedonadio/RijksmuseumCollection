@@ -10,6 +10,7 @@ import Foundation
 
 protocol CollectionViewModelDelegate: class {
 
+    func onLoading()
     func onFetchCompleted(with collection: [ItemPreview])
     func onFetchFailed(with reason: String)
 }
@@ -51,6 +52,10 @@ final class CollectionViewModel {
 
     func fetchCollection(type: CollectionObjectType, page: Int = 0) {
         let appending = page > 0 ? true : false
+
+        if !appending {
+            delegate?.onLoading()
+        }
 
         collectionService.fetch(type: type, page: page) { [weak self] response in
 
