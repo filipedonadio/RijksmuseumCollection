@@ -11,5 +11,5 @@ import Foundation
 protocol CollectionService {
     
     typealias Completion = (CollectionResponse) -> Void
-    func fetch(type: CollectionObjectType?, completion: @escaping Completion)
+    func fetch(type: CollectionObjectType?, page: Int?, completion: @escaping Completion)
 }

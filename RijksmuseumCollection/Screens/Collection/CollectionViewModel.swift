@@ -25,8 +25,10 @@ final class CollectionViewModel {
         self.collectionService = collectionService
     }
 
-    private func downloadImages(from collection: Collection) {
-        items.removeAll()
+    private func downloadImages(from collection: Collection, appending: Bool) {
+        if !appending {
+            items.removeAll()
+        }
         
         for object in collection.artObjects {
             downloadGroup.enter()
@@ -47,8 +49,10 @@ final class CollectionViewModel {
         }
     }
 
-    func fetchCollection(type: CollectionObjectType) {
-        collectionService.fetch(type: type) { [weak self] response in
+    func fetchCollection(type: CollectionObjectType, page: Int = 0) {
+        let appending = page > 0 ? true : false
+
+        collectionService.fetch(type: type, page: page) { [weak self] response in
 
             switch response {
 
@@ -58,7 +62,7 @@ final class CollectionViewModel {
                 }
 
             case .success(let collection):
-                self?.downloadImages(from: collection)
+                self?.downloadImages(from: collection, appending: appending)
                 self?.downloadGroup.notify(queue: .main) { [weak self] in
                     if let items = self?.items {
                         self?.delegate?.onFetchCompleted(with: items)

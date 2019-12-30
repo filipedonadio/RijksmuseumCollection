@@ -14,6 +14,8 @@ class CollectionViewController: UICollectionViewController, AlertDisplayer {
     let menuBarHeight: CGFloat = 50
     let defaultCellHeight: CGFloat = 150
     let cellTextHeight: CGFloat = 65
+    var page = 1
+    var loadingMore = false
 
     var viewModel: CollectionViewModel? {
         didSet {
@@ -27,9 +29,11 @@ class CollectionViewController: UICollectionViewController, AlertDisplayer {
                 layout.reset()
             }
             collectionView.reloadData()
-            
-            let indexPath = IndexPath(item: 0, section: 0)
-            collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
+
+            if page == 1 {
+                let indexPath = IndexPath(item: 0, section: 0)
+                collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
+            }
         }
     }
 
@@ -86,7 +90,7 @@ class CollectionViewController: UICollectionViewController, AlertDisplayer {
     }
 }
 
-extension CollectionViewController: UICollectionViewDelegateFlowLayout {
+extension CollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
@@ -94,13 +98,27 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemPreviewCell.identifier, for: indexPath) as! ItemPreviewCell
-        cell.item = items[indexPath.row]
+        cell.item = items[indexPath.item]
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 10)) / 2
         return CGSize(width: itemSize, height: itemSize)
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+
+        guard let selectedMenuItem = menuBar.selectedMenuItem else { return }
+
+        // Load the next page when reaching the last 2 items
+        if indexPath.item == items.count - 4 {
+            page += 1
+            
+            if !loadingMore {
+                viewModel?.fetchCollection(type: selectedMenuItem, page: page)
+            }
+        }
     }
 }
 

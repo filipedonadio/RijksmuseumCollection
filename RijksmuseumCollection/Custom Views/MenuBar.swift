@@ -10,6 +10,8 @@ import UIKit
 
 class MenuBar: UIView {
 
+    var selectedMenuItem: CollectionObjectType?
+
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -48,6 +50,7 @@ class MenuBar: UIView {
         // The first menu item is highlighted initially
         let selectedIndexPath = IndexPath(item: 0, section: 0)
         collectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: .centeredVertically)
+        selectedMenuItem = menuItems[0]
     }
 
     private func setupLayout() {
@@ -77,8 +80,10 @@ extension MenuBar: UICollectionViewDataSource {
 extension MenuBar: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedType = menuItems[indexPath.item]
-        targetViewController?.loadCollection(with: selectedType)
+        let tappedMenuItem = menuItems[indexPath.item]
+        selectedMenuItem = tappedMenuItem
+        targetViewController?.page = 1
+        targetViewController?.loadCollection(with: tappedMenuItem)
     }
 }
 

@@ -16,8 +16,8 @@ class DefaultCollectionService: CollectionService {
         self.requestManager = requestManager
     }
 
-    func fetch(type: CollectionObjectType?, completion: @escaping CollectionService.Completion) {
-        let request = CollectionRequest(type: type)
+    func fetch(type: CollectionObjectType?, page: Int?, completion: @escaping CollectionService.Completion) {
+        let request = CollectionRequest(type: type, page: page)
 
         requestManager.execute(request: request) { response in
             completion(response)
