@@ -33,8 +33,11 @@
 		81774EB023B52E5200B1C212 /* WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81774EAF23B52E5200B1C212 /* WebImage.swift */; };
 		8185E6DF23B0D9B6000AAB3B /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8185E6DE23B0D9B6000AAB3B /* MenuBar.swift */; };
 		8185E6E323B0E5B9000AAB3B /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8185E6E223B0E5B9000AAB3B /* MenuCell.swift */; };
+		81C9229923C7835E003A3566 /* ItemHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C9229823C7835E003A3566 /* ItemHeader.swift */; };
+		81C9229B23C78B8D003A3566 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C9229A23C78B8D003A3566 /* SectionHeader.swift */; };
 		81DE2A7123BA748E00010262 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE2A7023BA748E00010262 /* LoadingViewController.swift */; };
 		81DE2A7323BA763C00010262 /* UIViewController+Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE2A7223BA763C00010262 /* UIViewController+Child.swift */; };
+		81E2FEAC23C3343000BB4859 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E2FEAB23C3343000BB4859 /* ItemCell.swift */; };
 		81ECC9B123B3E245005A99D0 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ECC9B023B3E245005A99D0 /* Environment.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,8 +70,11 @@
 		81774EAF23B52E5200B1C212 /* WebImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImage.swift; sourceTree = "<group>"; };
 		8185E6DE23B0D9B6000AAB3B /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		8185E6E223B0E5B9000AAB3B /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		81C9229823C7835E003A3566 /* ItemHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemHeader.swift; sourceTree = "<group>"; };
+		81C9229A23C78B8D003A3566 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		81DE2A7023BA748E00010262 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		81DE2A7223BA763C00010262 /* UIViewController+Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Child.swift"; sourceTree = "<group>"; };
+		81E2FEAB23C3343000BB4859 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		81ECC9AF23B3E211005A99D0 /* Default.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Default.xcconfig; path = ../Default.xcconfig; sourceTree = "<group>"; };
 		81ECC9B023B3E245005A99D0 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		81ECC9B223B3E2CA005A99D0 /* Default.sample.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Default.sample.xcconfig; sourceTree = "<group>"; };
@@ -109,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				813DD45823B5532A00D097A0 /* Collection */,
+				81D59DB523BE4E650087C94B /* Item Details */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -210,6 +217,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		81D59DB523BE4E650087C94B /* Item Details */ = {
+			isa = PBXGroup;
+			children = (
+				81C9229823C7835E003A3566 /* ItemHeader.swift */,
+				81E2FEAB23C3343000BB4859 /* ItemCell.swift */,
+				81C9229A23C78B8D003A3566 /* SectionHeader.swift */,
+			);
+			path = "Item Details";
+			sourceTree = "<group>";
+		};
 		81ECC9B323B3E3E1005A99D0 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,12 +311,15 @@
 			files = (
 				81551D8623AF483F008EC04B /* PinterestLayout.swift in Sources */,
 				812DA8AB23B622CA00FBE810 /* ItemPreview.swift in Sources */,
+				81E2FEAC23C3343000BB4859 /* ItemCell.swift in Sources */,
+				81C9229923C7835E003A3566 /* ItemHeader.swift in Sources */,
 				81774EB023B52E5200B1C212 /* WebImage.swift in Sources */,
 				81774EAC23B51DC800B1C212 /* CollectionObject.swift in Sources */,
 				81774EA323B5178C00B1C212 /* CollectionResponse.swift in Sources */,
 				81DE2A7323BA763C00010262 /* UIViewController+Child.swift in Sources */,
 				81ECC9B123B3E245005A99D0 /* Environment.swift in Sources */,
 				81774EA523B517A400B1C212 /* CollectionService.swift in Sources */,
+				81C9229B23C78B8D003A3566 /* SectionHeader.swift in Sources */,
 				813FEEC323AD43B900C15501 /* AppDelegate.swift in Sources */,
 				81774EA723B517B200B1C212 /* DefaultCollectionService.swift in Sources */,
 				8185E6DF23B0D9B6000AAB3B /* MenuBar.swift in Sources */,
