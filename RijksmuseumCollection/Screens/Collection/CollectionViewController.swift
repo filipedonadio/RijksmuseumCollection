@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CollectionViewController: UICollectionViewController, AlertDisplayer {
+class CollectionViewController: UIViewController, AlertDisplayer {
 
     let menuBar = MenuBar()
     let menuBarHeight: CGFloat = 50
@@ -18,6 +18,14 @@ class CollectionViewController: UICollectionViewController, AlertDisplayer {
 
     var page = 1
     var loadingMore = false
+
+    let collectionView: UICollectionView = {
+        let previewCollectionView = UICollectionView(frame: .zero, collectionViewLayout: PinterestLayout())
+        previewCollectionView.backgroundColor = .black
+        previewCollectionView.indicatorStyle = .white
+        previewCollectionView.register(ItemPreviewCell.nib, forCellWithReuseIdentifier: ItemPreviewCell.identifier)
+        return previewCollectionView
+    }()
 
     var viewModel: CollectionViewModel? {
         didSet {
@@ -83,13 +91,21 @@ class CollectionViewController: UICollectionViewController, AlertDisplayer {
             layout.delegate = self
         }
 
-        let topSpacing: CGFloat = 6
-        let topInset = menuBarHeight + topSpacing
-        collectionView?.contentInset = UIEdgeInsets(top: topInset, left: 10, bottom: 10, right: 10)
-        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
-        collectionView.backgroundColor = .black
-        collectionView.indicatorStyle = .white
-        collectionView.register(ItemPreviewCell.nib, forCellWithReuseIdentifier: ItemPreviewCell.identifier)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+
+        view.addSubview(collectionView)
+
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.topAnchor.constraint(equalTo: menuBar.bottomAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
     }
 
     func addLoadingView() {
@@ -97,8 +113,9 @@ class CollectionViewController: UICollectionViewController, AlertDisplayer {
 
         guard let loadingView = loadingViewController.view else { return }
         loadingView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            loadingView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: menuBarHeight),
+            loadingView.topAnchor.constraint(equalTo: menuBar.bottomAnchor),
             loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             loadingView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -110,38 +127,43 @@ class CollectionViewController: UICollectionViewController, AlertDisplayer {
     }
 }
 
-extension CollectionViewController {
+extension CollectionViewController: UICollectionViewDataSource {
 
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }
 
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemPreviewCell.identifier, for: indexPath) as! ItemPreviewCell
         cell.item = items[indexPath.item]
         return cell
     }
+}
+
+extension CollectionViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 10)) / 2
         return CGSize(width: itemSize, height: itemSize)
     }
+}
 
-    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+extension CollectionViewController: UICollectionViewDelegate {
 
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let selectedMenuItem = menuBar.selectedMenuItem else { return }
 
         // Load the next page when reaching the last 2 items
         if indexPath.item == items.count - 4 {
             page += 1
-            
+
             if !loadingMore {
                 viewModel?.fetchCollection(type: selectedMenuItem, page: page)
             }
         }
     }
 
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedObjectNumber = items[indexPath.row].objectNumber
         let itemDetailsVC = ItemViewController()
 

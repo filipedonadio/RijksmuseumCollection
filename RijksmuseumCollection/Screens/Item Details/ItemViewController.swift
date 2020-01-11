@@ -8,10 +8,17 @@
 
 import UIKit
 
-class ItemViewController: UITableViewController, AlertDisplayer {
+class ItemViewController: UIViewController, AlertDisplayer {
 
-    let loadingViewController = LoadingViewController()
-    let tableViewSectionHeaderHeight: CGFloat = 48
+    let tableView: UITableView = {
+        let itemTableView = UITableView()
+        itemTableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.identifier)
+        itemTableView.allowsSelection = false
+        itemTableView.backgroundColor = .black
+        itemTableView.separatorStyle = .none
+        itemTableView.tableFooterView = UIView()
+        return itemTableView
+    }()
 
     var item: ItemDisplayable? {
         didSet {
@@ -39,51 +46,26 @@ class ItemViewController: UITableViewController, AlertDisplayer {
         }
     }
 
+    let loadingViewController = LoadingViewController()
+    let tableViewSectionHeaderHeight: CGFloat = 48
+
     override func viewDidLoad() {
         setupTableView()
     }
 
     func setupTableView() {
-        tableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.identifier)
-        tableView.allowsSelection = false
-        tableView.backgroundColor = .black
-        tableView.separatorStyle = .none
-        tableView.tableFooterView = UIView()
-    }
+        tableView.dataSource = self
+        tableView.delegate = self
 
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let sectionHeader = SectionHeader(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 48))
-        sectionHeader.label.text = item?.sections[section].name
-        return sectionHeader
-    }
+        view.addSubview(tableView)
 
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return tableViewSectionHeaderHeight
-    }
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        if let item = item {
-            return item.sections.count
-        }
-
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let item = item {
-            return item.sections[section].info.count
-        }
-
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.identifier, for: indexPath) as! ItemCell
-
-        cell.itemLabel.text = item?.sections[indexPath.section].info[indexPath.item].title
-        cell.itemData.text = item?.sections[indexPath.section].info[indexPath.item].data
-
-        return cell
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
     }
 
     func addLoadingView() {
@@ -92,6 +74,47 @@ class ItemViewController: UITableViewController, AlertDisplayer {
 
     func removeLoadingView() {
         loadingViewController.remove()
+    }
+}
+
+extension ItemViewController: UITableViewDataSource {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if let item = item {
+            return item.sections.count
+        }
+
+        return 0
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let item = item {
+            return item.sections[section].info.count
+        }
+
+        return 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.identifier, for: indexPath) as! ItemCell
+
+        cell.itemLabel.text = item?.sections[indexPath.section].info[indexPath.item].title
+        cell.itemData.text = item?.sections[indexPath.section].info[indexPath.item].data
+
+        return cell
+    }
+}
+
+extension ItemViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let sectionHeader = SectionHeader(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 48))
+        sectionHeader.label.text = item?.sections[section].name
+        return sectionHeader
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return tableViewSectionHeaderHeight
     }
 }
 
