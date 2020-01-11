@@ -29,7 +29,7 @@ class MenuBar: UIView {
     let menuCellId = "menuCellId"
     let menuItemLeftSpacing: CGFloat = 10
     let menuItemRightSpacing: CGFloat = 10
-    let menuFont = UIFont(name: "AvenirNext-Medium", size: 14)
+    let menuFont = UIFont(name: "AvenirNext-Medium", size: 16)
     let menuItems: [CollectionObjectType] = [.painting, .box, .brooch, .candlestick, .cup, .demonstrationModel, .figure, .fragment, .furniture, .jeton, .jewellery]
 
     override init(frame: CGRect) {
