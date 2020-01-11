@@ -10,6 +10,6 @@ import Foundation
 
 struct ItemDisplayable {
 
-    let headerImage: Data
+    let headerImage: Data?
     let sections: [Section]
 }

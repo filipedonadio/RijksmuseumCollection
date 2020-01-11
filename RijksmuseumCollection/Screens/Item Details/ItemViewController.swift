@@ -22,13 +22,7 @@ class ItemViewController: UIViewController, AlertDisplayer {
 
     var item: ItemDisplayable? {
         didSet {
-            if let item = item {
-                if let headerImage = UIImage(data: item.headerImage) {
-                    let headerView = ItemHeader(frame: CGRect(x: 0.0, y: 0.0, width: view.frame.width, height: 300.0), headerImage: headerImage)
-                    tableView.tableHeaderView = headerView
-                }
-            }
-            
+            updateHeaderView()
             tableView.reloadData()
         }
     }
@@ -66,6 +60,22 @@ class ItemViewController: UIViewController, AlertDisplayer {
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
+    }
+
+    func updateHeaderView() {
+        if let item = item {
+            var headerImage = UIImage(named: "photo-not-available")!
+
+            if let itemImage = item.headerImage {
+
+                if let image = UIImage(data: itemImage) {
+                    headerImage = image
+                }
+            }
+
+            let headerView = ItemHeader(frame: CGRect(x: 0.0, y: 0.0, width: view.frame.width, height: 300.0), headerImage: headerImage)
+            tableView.tableHeaderView = headerView
+        }
     }
 
     func addLoadingView() {

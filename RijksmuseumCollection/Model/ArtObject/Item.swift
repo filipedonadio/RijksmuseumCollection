@@ -22,5 +22,5 @@ struct Item: Decodable {
     let subTitle: String?
     let techniques: [String]
     let title: String?
-    let webImage: WebImage
+    let webImage: WebImage?
 }
