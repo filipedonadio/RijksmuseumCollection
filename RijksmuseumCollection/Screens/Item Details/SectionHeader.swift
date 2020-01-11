@@ -29,7 +29,7 @@ class SectionHeader: UIView {
 
     private func setupView() {
         backgroundColor = .black
-        label.frame = CGRect(x: 16, y: 24, width: frame.width, height: 16)
+        label.frame = CGRect(x: 16, y: 24, width: frame.width, height: 20)
         addSubview(label)
     }
 }

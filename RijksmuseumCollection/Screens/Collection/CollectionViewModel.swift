@@ -42,7 +42,7 @@ final class CollectionViewModel {
                 }
 
                 guard let data = data else { return }
-                self?.items.append(ItemPreview(image: data, title: object.title, subtitle: object.principalOrFirstMaker))
+                self?.items.append(ItemPreview(image: data, objectNumber: object.objectNumber, title: object.title, subtitle: object.principalOrFirstMaker))
                 self?.downloadGroup.leave()
             }
 

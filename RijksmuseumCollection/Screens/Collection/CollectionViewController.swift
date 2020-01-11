@@ -62,6 +62,7 @@ class CollectionViewController: UICollectionViewController, AlertDisplayer {
         navigationItem.titleView = logoContainer
         navigationController?.navigationBar.barTintColor = .black
         navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.tintColor = .orange
     }
 
     func setupMenu() {
@@ -138,6 +139,15 @@ extension CollectionViewController {
                 viewModel?.fetchCollection(type: selectedMenuItem, page: page)
             }
         }
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedObjectNumber = items[indexPath.row].objectNumber
+        let itemDetailsVC = ItemViewController()
+
+        itemDetailsVC.viewModel = ItemViewModel(itemService: DefaultItemService(requestManager: DefaultRequestManager()))
+        itemDetailsVC.objectNumber = selectedObjectNumber
+        navigationController?.pushViewController(itemDetailsVC, animated: true)
     }
 }
 

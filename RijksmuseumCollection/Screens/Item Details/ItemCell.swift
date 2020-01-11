@@ -12,7 +12,7 @@ class ItemCell: UITableViewCell {
 
     let itemLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-Medium", size: 12)
+        label.font = UIFont(name: "AvenirNext-Medium", size: 14)
         label.textColor = .lightText
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -20,7 +20,7 @@ class ItemCell: UITableViewCell {
 
     let itemData: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-Medium", size: 14)
+        label.font = UIFont(name: "AvenirNext-Medium", size: 16)
         label.textColor = .white
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false

@@ -10,7 +10,7 @@ import Foundation
 
 struct CollectionObject: Decodable {
     
-    let id: String
+    let objectNumber: String
     let title: String
     let principalOrFirstMaker: String
     let webImage: WebImage

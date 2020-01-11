@@ -11,6 +11,7 @@ import Foundation
 struct ItemPreview {
 
     let image: Data?
+    let objectNumber: String
     let title: String
     let subtitle: String
 }
